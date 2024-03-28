@@ -22,15 +22,15 @@ st.write('The name on your smoothie will be:', name_on_order)
 # st.write('Your favorite fruit is:', option)
 
 
-# cnx = st.connection("snowflake")
-# session = cnx.session()
-# my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'),col('SEARCH_ON'))
-# # st.dataframe(data=my_dataframe, use_container_width=True)
-# # st.stop()
-
-# pd_df = my_dataframe.to_pandas()
-# st.dataframe(pd_df)
+cnx = st.connection("snowflake")
+session = cnx.session()
+my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'),col('SEARCH_ON'))
+# st.dataframe(data=my_dataframe, use_container_width=True)
 # st.stop()
+
+pd_df = my_dataframe.to_pandas()
+st.dataframe(pd_df)
+st.stop()
 
 ingredient_list = st.multiselect(
     'Choose up to 5 ingredient:'
@@ -64,15 +64,15 @@ if ingredient_list:
         session.sql(my_insert_stmt).collect()
         st.success('Your Smoothie is ordered!', icon="✅")
 
-cnx = st.connection("snowflake")
-session = cnx.session()
-my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'),col('SEARCH_ON'))
-# st.dataframe(data=my_dataframe, use_container_width=True)
-# st.stop()
+# cnx = st.connection("snowflake")
+# session = cnx.session()
+# my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'),col('SEARCH_ON'))
+# # st.dataframe(data=my_dataframe, use_container_width=True)
+# # st.stop()
 
-pd_df = my_dataframe.to_pandas()
-st.dataframe(pd_df)
-st.stop()
+# pd_df = my_dataframe.to_pandas()
+# st.dataframe(pd_df)
+# st.stop()
 
 # # Get the current credentials
 # session = get_active_session()
